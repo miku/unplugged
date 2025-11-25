@@ -219,6 +219,10 @@ Which model to use?
 
 * https://gorilla.cs.berkeley.edu/leaderboard.html
 
+## any other ideas?
+
+* ...
+
 ## playground
 
 ![](static/Europeana.eu-775-_nhdw3mV-8da6bab09d770c96f231d1ad3b420122.jpeg)
