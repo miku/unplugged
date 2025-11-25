@@ -49,7 +49,7 @@ Start with two ingredients
 
 ![](static/looptool.gif)
 
-> [LLM with tools: A survey](https://arxiv.org/pdf/2409.18807)
+> [LLM with tools: A survey](https://arxiv.org/pdf/2409.18807) (2024-09-24)
 
 > tool invocation timing, selection accuracy, and the need for robust reasoning
 > processes
