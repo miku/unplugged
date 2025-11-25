@@ -21,6 +21,8 @@ Also, self-hosted, tool support:
 * llama3.3
 * ...
 
+![](static/IMG_5146.jpg)
+
 ## ok, from scratch then
 
 Start with two ingredients
