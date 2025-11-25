@@ -13,7 +13,24 @@ A downside is that their backend is closely tied to Google:
 Wanted to use local models, and there was this blog post: [You Should Write An
 Agent](https://fly.io/blog/everyone-write-an-agent/).
 
-Also, self-hosted, tool support:
+> You’re allotted a fixed number of tokens in any context window. Each input
+> you feed in, each output you save, each tool you describe, and each tool
+> output eats tokens (that is: takes up space in the array of strings you keep
+> to pretend you’re having a conversation with a stateless black box). Past a
+> threshold, the whole system begins getting nondeterministically stupider.
+> Fun!
+
+> No, really. Fun! You have so many options. Take “sub-agents”. People make a
+> huge deal out of Claude Code’s sub-agents, but you can see now how trivial
+> they are to implement: just a new context array, another call to the model.
+> Give each call different tools. Make sub-agents talk to each other, summarize
+> each other, collate and aggregate. Build tree structures out of them. Feed
+> them back through the LLM to summarize them as a form of on-the-fly
+> compression, whatever you like.
+
+> **Your wackiest idea will probably (1) work and (2) take 30 minutes to code.**
+
+Also, self-hosted, with tool support:
 
 * gpt-oss:20b, gpt-oss:120b
 * qwen3-vl
