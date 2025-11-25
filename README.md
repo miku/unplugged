@@ -225,7 +225,7 @@ Which model to use?
 
 ## playground
 
-![](static/Europeana.eu-775-_nhdw3mV-8da6bab09d770c96f231d1ad3b420122.jpeg)
+[![](static/Europeana.eu-775-_nhdw3mV-8da6bab09d770c96f231d1ad3b420122-s.jpeg)](https://www.europeana.eu/en/item/775/_nhdw3mV)
 
 ## credits
 
