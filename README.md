@@ -7,8 +7,8 @@ Google released an ADK for various languages, including Go:
 
 A downside is that their backend is closely tied to Google:
 
-* [#233](https://github.com/google/adk-go/pull/233) anthropic model support [still open, as of 2025-11-25]
-* [#242](https://github.com/google/adk-go/pull/242) openai api support [still open, as of 2025-11-25]
+* [#233](https://github.com/google/adk-go/pull/233) anthropic model support [open, as of 2025-11-25]
+* [#242](https://github.com/google/adk-go/pull/242) openai api support [open, as of 2025-11-25]
 
 Wanted to use local models, and there was this blog post: [You Should Write An
 Agent](https://fly.io/blog/everyone-write-an-agent/).
