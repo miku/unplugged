@@ -5,7 +5,7 @@
 Google released an ADK for various languages, including Go:
 [google/adk-go](https://github.com/google/adk-go).
 
-A downside is that their backend is closely tied to Google:
+A downside is that their backend is closely tied to Gemini:
 
 * [#233](https://github.com/google/adk-go/pull/233) anthropic model support [open, as of 2025-11-25]
 * [#242](https://github.com/google/adk-go/pull/242) openai api support [open, as of 2025-11-25]
