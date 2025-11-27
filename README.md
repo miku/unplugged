@@ -1,4 +1,4 @@
-# Writing an simple agent in Go
+# Writing a simple agent in Go
 
 > Ligthing talk, [Leipzig Gophers](https://golangleipzig.space) #56, [Martin Czygan](https://www.linkedin.com/in/martin-czygan-58348842/)
 
