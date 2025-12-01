@@ -10,8 +10,8 @@ A downside is that their backend is closely tied to Gemini:
 * [#233](https://github.com/google/adk-go/pull/233) anthropic model support [open, as of 2025-11-25]
 * [#242](https://github.com/google/adk-go/pull/242) openai api support [open, as of 2025-11-25]
 
-Wanted to use local models, and there was this blog post: [You Should Write An
-Agent](https://fly.io/blog/everyone-write-an-agent/).
+Wanted to use **local models** only, and there was this blog post: [You Should
+Write An Agent](https://fly.io/blog/everyone-write-an-agent/).
 
 > You’re allotted a fixed number of tokens in any context window. Each input
 > you feed in, each output you save, each tool you describe, and each tool
@@ -30,7 +30,7 @@ Agent](https://fly.io/blog/everyone-write-an-agent/).
 
 > **Your wackiest idea will probably (1) work and (2) take 30 minutes to code.**
 
-Also, self-hosted, with tool support:
+Also, self-hosted, quantized, with tool support:
 
 * gpt-oss:20b, gpt-oss:120b
 * qwen3-vl
@@ -38,7 +38,16 @@ Also, self-hosted, with tool support:
 * llama3.3
 * ...
 
+<!--
 ![](static/IMG_5146.jpg)
+-->
+
+According to [Small Language Models are the Future of Agentic
+AI](https://arxiv.org/abs/2506.02153), a model with 10B or less parameters may
+be considered small.
+
+> We note that as of 2025, we would be comfortable with considering most models
+> below 10bn parameters in size to be SLMs -- [2506.02153](https://arxiv.org/pdf/2506.02153)
 
 ## ok, from scratch then
 
