@@ -1,6 +1,8 @@
 # Writing a simple agent in Go
 
-> Ligthing talk, [Leipzig Gophers](https://golangleipzig.space) #56, [Martin Czygan](https://www.linkedin.com/in/martin-czygan-58348842/)
+> Ligthing talk, [Leipzig Gophers](https://golangleipzig.space)
+> [#56](https://golangleipzig.space/posts/meetup-56-wrapup/), [Martin
+> Czygan](https://www.linkedin.com/in/martin-czygan-58348842/)
 
 Google released an ADK for various languages, including Go:
 [google/adk-go](https://github.com/google/adk-go).
@@ -125,11 +127,15 @@ Get the current weather in a given location
 """
 ```
 
-## iteration: 0
+## iteration: #0
 
 ```go
 
-func runAgentLoop(client *LlmClient, model string, registry *ToolRegistry, userMessage string) error {
+func runAgentLoop(client *LlmClient,
+    model string,
+    registry *ToolRegistry,
+    userMessage string) error {
+
 	// messages to start with, TODO: tweak this
 	messages := []Message{
 		{
@@ -179,7 +185,7 @@ func runAgentLoop(client *LlmClient, model string, registry *ToolRegistry, userM
 }
 ```
 
-## iteration: 1
+## iteration: #1
 
 Just adding tools.
 
