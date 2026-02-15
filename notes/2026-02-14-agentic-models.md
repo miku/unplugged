@@ -58,6 +58,15 @@ SFT:
 * early reasoning
 * anything with good input, output pairs
 
+Instead of human data, use LLM;
+
+> Idea: replace human preferences with LLM preferences; AlpacaFarm
+
+## evals
+
+* close-ended (few possible answers, automate verification), open-ended
+* sensitive to prompting
+
 
 ## tool use PT
 
