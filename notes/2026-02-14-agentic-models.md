@@ -100,6 +100,19 @@ SFT is quick; "You learn quickly from SFT! ~ 10k are sufficient for learning sty
 
 Preferences: RLHF (preference between two choices)
 
+## What is needed to train the verifiable agentic models?
+
+* Get good verifiable training data to train these agents.
+* Verifiable agents are intelligent. We need to define what intelligence is.
+* Understand how to feed the verifiable data to the model. The recipes
+
+Agentic model:
+
+* trained to consume tokens that inform the model about the environment; user intentions
+* trained to generate tokens that are consumed by software tools, that help to maximize the reward from the verifier
+* Verifier: These models are trained to generate tokens that maximize the reward from the verifier. Verifiers are unit tests for code, math checker for proofs, DOM scripts for web tasks, etc
+
+
 ## refs
 
 * [https://rdi.berkeley.edu/agentic-ai/slides/lecture1.pdf](https://rdi.berkeley.edu/agentic-ai/slides/lecture1.pdf)
