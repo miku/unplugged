@@ -261,4 +261,4 @@ Which model to use?
 
 ## ...
 
-> [cont...](notes/2026-02-18-lt-ki.md)
+> [cont...](https://github.com/miku/unplugged/blob/main/notes/2026-02-18-lt-ki.md#some-updates-022026)
