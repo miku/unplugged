@@ -32,12 +32,12 @@ Write An Agent](https://fly.io/blog/everyone-write-an-agent/).
 
 > **Your wackiest idea will probably (1) work and (2) take 30 minutes to code.**
 
-Also, self-hosted, quantized, with tool support:
+Also, self-hosted, quantized, with [tool](https://ollama.com/search?c=tools) support:
 
+* glm-4.7, ...
 * gpt-oss:20b, gpt-oss:120b
-* qwen3-vl
-* qwq
-* llama3.3
+* qwen3-vl, qwen3-coder-next, ...
+* llama3.3, ...
 * ...
 
 <!--
@@ -67,6 +67,12 @@ Start with two ingredients
 
 > [...] **unsatisfactory** in certain professional fields, especially in scenarios
 > that require **precision**
+
+Example datasets for tool support, function calling, etc:
+
+* [glaive-function-calling-v2](https://huggingface.co/datasets/glaiveai/glaive-function-calling-v2)
+* [Hermes-Function-Calling](https://github.com/NousResearch/Hermes-Function-Calling)
+* [more ...](https://github.com/mlabonne/llm-datasets?tab=readme-ov-file#agent--function-calling)
 
 Other papers:
 
