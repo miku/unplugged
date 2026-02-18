@@ -265,6 +265,26 @@ func registerTools(registry *ToolRegistry) {
 		},
 	)
 
+	// note: this is just an indirectiom, when fetching a webpage, steer towards "links"
+
+	// registry.Register(
+	// 	"fetch website by URL",
+	// 	"Fetch URL and render as text",
+	// 	map[string]any{
+	// 		"type":     "object",
+	// 		"required": []string{"query"},
+	// 		"properties": map[string]any{
+	// 			"url": map[string]any{
+	// 				"type":        "string",
+	// 				"description": "A URL to fetch",
+	// 			},
+	// 		},
+	// 	},
+	// 	func(args map[string]any) (string, error) {
+	// 		return fmt.Sprintf("run command: links -dump %s", args["url"]), nil
+	// 	},
+	// )
+
 	registry.Register(
 		"ping",
 		"find out connectivity to a computer on the network with ping",
