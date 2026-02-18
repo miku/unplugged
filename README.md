@@ -141,6 +141,8 @@ Get the current weather in a given location
 
 The loop looks for tool calls, then YOLO.EXE whatever the user registered.
 
+* cf. [scratch/dr0](scratch/dr0/)
+
 ```go
 func runAgentLoop(client *LlmClient,
     model string,
@@ -256,3 +258,7 @@ Which model to use?
 ## credits
 
 * [playground image](https://www.europeana.eu/en/item/775/_nhdw3mV)
+
+## ...
+
+> [cont...](notes/2026-02-18-lt-ki.md)
