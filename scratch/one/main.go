@@ -20,10 +20,10 @@ import (
 )
 
 var (
-	userMessage      = flag.String("m", "what is the weather in rijeka? what is 2 + 2?", "user message")
+	userMessage      = flag.String("m", "what is the weather in Halle (Saale)? what is 2 + 2?", "user message")
 	requireConfirm   = flag.Bool("confirm", true, "require confirmation before running commands")
 	autoApproveReads = flag.Bool("auto-approve-reads", true, "auto-approve read-only commands without confirmation")
-	timeout          = flag.Duration("T", 30*time.Second, "timeout for requests")
+	timeout          = flag.Duration("T", 90*time.Second, "timeout for requests")
 	dumpTools        = flag.Bool("t", false, "dump tools")
 	debugRenderOnly  = flag.Bool("d", false, "debug render only")
 )
@@ -184,6 +184,33 @@ func main() {
 	}
 }
 
+func wmoCodeToCondition(code int) string {
+	switch {
+	case code == 0:
+		return "Clear sky"
+	case code <= 2:
+		return "Partly cloudy"
+	case code == 3:
+		return "Overcast"
+	case code <= 49:
+		return "Foggy"
+	case code <= 59:
+		return "Drizzle"
+	case code <= 69:
+		return "Rain"
+	case code <= 79:
+		return "Snow"
+	case code <= 82:
+		return "Rain showers"
+	case code <= 86:
+		return "Snow showers"
+	case code <= 99:
+		return "Thunderstorm"
+	default:
+		return "Unknown"
+	}
+}
+
 func registerTools(registry *ToolRegistry) {
 	registry.Register(
 		"get_weather",
@@ -200,7 +227,63 @@ func registerTools(registry *ToolRegistry) {
 		},
 		func(args map[string]any) (string, error) {
 			city, _ := args["city"].(string)
-			return fmt.Sprintf(`{"city": "%s", "temperature": "18°C", "condition": "Partly cloudy", "humidity": "65%%"}`, city), nil
+			if city == "" {
+				return "", fmt.Errorf("city name is required")
+			}
+
+			// Step 1: Geocode city name using Open-Meteo's geocoding API
+			geoURL := fmt.Sprintf("https://geocoding-api.open-meteo.com/v1/search?name=%s&count=1&language=en&format=json",
+				strings.ReplaceAll(city, " ", "+"))
+			geoResp, err := http.Get(geoURL)
+			if err != nil {
+				return "", fmt.Errorf("geocoding request failed: %w", err)
+			}
+			defer geoResp.Body.Close()
+
+			var geoData struct {
+				Results []struct {
+					Name      string  `json:"name"`
+					Latitude  float64 `json:"latitude"`
+					Longitude float64 `json:"longitude"`
+					Country   string  `json:"country"`
+				} `json:"results"`
+			}
+			if err := json.NewDecoder(geoResp.Body).Decode(&geoData); err != nil {
+				return "", fmt.Errorf("geocoding decode failed: %w", err)
+			}
+			if len(geoData.Results) == 0 {
+				return "", fmt.Errorf("city not found: %s", city)
+			}
+
+			loc := geoData.Results[0]
+
+			// Step 2: Fetch weather using coordinates
+			weatherURL := fmt.Sprintf(
+				"https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&wind_speed_unit=kmh&temperature_unit=celsius",
+				loc.Latitude, loc.Longitude)
+			weatherResp, err := http.Get(weatherURL)
+			if err != nil {
+				return "", fmt.Errorf("weather request failed: %w", err)
+			}
+			defer weatherResp.Body.Close()
+
+			var weatherData struct {
+				Current struct {
+					Temperature float64 `json:"temperature_2m"`
+					Humidity    int     `json:"relative_humidity_2m"`
+					WeatherCode int     `json:"weather_code"`
+					WindSpeed   float64 `json:"wind_speed_10m"`
+				} `json:"current"`
+			}
+			if err := json.NewDecoder(weatherResp.Body).Decode(&weatherData); err != nil {
+				return "", fmt.Errorf("weather decode failed: %w", err)
+			}
+
+			c := weatherData.Current
+			return fmt.Sprintf(
+				`{"city": "%s", "country": "%s", "temperature": "%.1f°C", "humidity": "%d%%", "wind_speed": "%.1f km/h", "condition": "%s"}`,
+				loc.Name, loc.Country, c.Temperature, c.Humidity, c.WindSpeed, wmoCodeToCondition(c.WeatherCode),
+			), nil
 		},
 	)
 
@@ -264,26 +347,6 @@ func registerTools(registry *ToolRegistry) {
 			return "found 4 books", nil
 		},
 	)
-
-	// note: this is just an indirectiom, when fetching a webpage, steer towards "links"
-
-	// registry.Register(
-	// 	"fetch website by URL",
-	// 	"Fetch URL and render as text",
-	// 	map[string]any{
-	// 		"type":     "object",
-	// 		"required": []string{"query"},
-	// 		"properties": map[string]any{
-	// 			"url": map[string]any{
-	// 				"type":        "string",
-	// 				"description": "A URL to fetch",
-	// 			},
-	// 		},
-	// 	},
-	// 	func(args map[string]any) (string, error) {
-	// 		return fmt.Sprintf("run command: links -dump %s", args["url"]), nil
-	// 	},
-	// )
 
 	registry.Register(
 		"ping",
