@@ -1,6 +1,6 @@
 # Writing a simple agent in Go
 
-> Ligthing talk, [Leipzig Gophers](https://golangleipzig.space)
+> Lightning talk, [Leipzig Gophers](https://golangleipzig.space)
 > [#56](https://golangleipzig.space/posts/meetup-56-wrapup/) / [KI Meetup #9, Halle (Saale)](https://klaustor-coworking.de/events/260218-ki-meetup-halle/), [Martin
 > Czygan](https://www.linkedin.com/in/martin-czygan-58348842/)
 
