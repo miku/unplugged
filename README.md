@@ -223,9 +223,13 @@ It seems to work, at least in the harmless cases.
 
 ### list files
 
+> how many files are in this directory?
+
 ![](static/list_files.png)
 
 ### read file
+
+> find the go.mod file in this dir and show what is in there?
 
 ![](static/read_file.png)
 
@@ -234,6 +238,8 @@ It seems to work, at least in the harmless cases.
 Write and overwrite files.
 
 ### execute command
+
+> generate a 400x400 random_squares.png with randomly colored squares of size 10x10, try to use command line tools
 
 ![](static/execute_command.png)
 
