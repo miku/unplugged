@@ -22,7 +22,7 @@ A downside is that their backend is closely tied to Gemini:
 * [#242](https://github.com/google/adk-go/pull/242) openai api support [open, as of 2025-11-25]
 
 Wanted to use **local models** only, and there was this blog post: [You Should
-Write An Agent](https://fly.io/blog/everyone-write-an-agent/).
+Write An Agent](https://fly.io/blog/everyone-write-an-agent/) (2025-11-06).
 
 > You’re allotted a fixed number of tokens in any context window. Each input
 > you feed in, each output you save, each tool you describe, and each tool
