@@ -1,8 +1,17 @@
 # Writing a simple agent in Go
 
 > Lightning talk, [Leipzig Gophers](https://golangleipzig.space)
-> [#56](https://golangleipzig.space/posts/meetup-56-wrapup/) / [KI Meetup #9, Halle (Saale)](https://klaustor-coworking.de/events/260218-ki-meetup-halle/), [Martin
+> [#56](https://golangleipzig.space/posts/meetup-56-wrapup/) 2025-11-25 / [KI Meetup #9, Halle (Saale)](https://klaustor-coworking.de/events/260218-ki-meetup-halle/), [Martin
 > Czygan](https://www.linkedin.com/in/martin-czygan-58348842/)
+
+----
+
+Fun fact: The original lightning talk was held just **a few hours after the
+initial commit of openclaw**, which became a worldwide phenomenon.
+
+![](static/openclaw-openclaw-git-log-tail.png)
+
+----
 
 Google released an ADK for various languages, including Go:
 [google/adk-go](https://github.com/google/adk-go).
