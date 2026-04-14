@@ -37,9 +37,64 @@ simple OS questions.
 
 * [evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) (01/2026)
 
-
 There is also a lot of value in having datastores at hand, that would be able
 to respond to queries. One perspective on that is that every company that wants
 to remain visible, may want to expose what the do or provide through an API. A
 website is for humans, but a machine would require something else.
 
+
+## Zoo of Agents (cli)
+
+* [crush](https://github.com/charmbracelet/crush)
+* [goose](https://goose-docs.ai/)
+* [claude code](https://en.wikipedia.org/wiki/Claude_(language_model)#Claude_Code), [2025-02-24](https://www.anthropic.com/news/claude-3-7-sonnet), [best practices](https://code.claude.com/docs/en/best-practices), ...
+* [pi](https://pi.dev)
+
+So, when everybody does mostly the same, but slightly different, what could be a better design?
+
+Maybe to keep the default experience minimal, but the program extensible?
+
+Also, I notice a large number of additional tools, that may come in handy, but
+you do not want to keep N tools around, if you could somehow use a single one,
+that has the option for plugins or the like.
+
+Example: Automatic stdout/stderr compaction or common commands, etc.
+
+## a74c5da1 2025-08-09 Initial monorepo setup ...
+
+![](static/git-cal-pi-mono.png)
+
+As of 04/2026, it consists of 211450 LOC (ts: 167246, md: 17817, ...); 2988
+directories, 33629 files; with 80% of the code committed by the original
+author.
+
+```shell
+$ git summary | head -20
+
+ project     : pi-mono
+ repo age    : 8 months
+ branch:     : main
+ last active : 18 hours ago
+ active on   : 184 days
+ commits     : 3515
+ files       : 775
+ uncommitted : 0
+ authors     :
+  2765  Mario Zechner                 78.7%
+    66  Helmut Januschka              1.9%
+    59  github-actions[bot]           1.7%
+    42  Aliou Diallo                  1.2%
+    41  Markus Ylisiurunen            1.2%
+    36  Sviatoslav Abakumov           1.0%
+    29  Nico Bailon                   0.8%
+    22  Armin Ronacher                0.6%
+    18  Danila Poyarkov               0.5%
+    18  mom                           0.5%
+```
+
+## Layered architecture
+
+* ai/llm layer (abstractions over various providers)
+* agent (generic agent interaction)
+* coding-agent
+* ...
