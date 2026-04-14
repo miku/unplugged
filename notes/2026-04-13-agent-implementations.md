@@ -98,3 +98,25 @@ $ git summary | head -20
 * agent (generic agent interaction)
 * coding-agent
 * ...
+
+Minimal tool support:
+
+```
+Available Tools (default: read, bash, edit, write):
+  read   - Read file contents
+  bash   - Execute bash commands
+  edit   - Edit files with find/replace
+  write  - Write files (creates/overwrites)
+  grep   - Search file contents (read-only, off by default)
+  find   - Find files by glob pattern (read-only, off by default)
+  ls     - List directory contents (read-only, off by default)
+```
+
+Basically betting that bash is a concise way to access information.
+
+On start, no plugins:
+
+```shell
+$ pi list
+No packages installed.
+```
