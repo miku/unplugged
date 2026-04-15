@@ -199,11 +199,28 @@ exit (Ctrl+C, Ctrl+D, SIGHUP, SIGTERM)
   └─► session_shutdown
 ```
 
-Plugins can hook into the various stages.
+Plugins can hook into the various stages, e.g.
 
+* `tool_result`, `resources_discover`
 
-## Other notable feautes
+## Other notable features
 
 * switch model in session
-*
+* lots of packages: [shittycodingagent.ai/packages](https://shittycodingagent.ai/packages), just be careful
 
+## Examples
+
+
+### Extension: Additional resources
+
+
+
+### Extension: Web Access
+
+```
+$ pi install npm:pi-web-access
+```
+
+### Skills
+
+## Other agent
