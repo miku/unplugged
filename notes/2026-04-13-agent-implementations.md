@@ -219,8 +219,62 @@ Plugins can hook into the various stages, e.g.
 
 ```
 $ pi install npm:pi-web-access
+$ $ pi list
+User packages:
+  npm:pi-web-access
+    /home/tir/.npm-packages/lib/node_modules/pi-web-access
+```
+
+![](static/pi-with-plugin.png)
+
+Find installed package in settings:
+
+```
+$ jq . ~/.pi/agent/settings.json
+{
+  "lastChangelogVersion": "0.67.2",
+  "defaultProvider": "ollama/strix",
+  "defaultModel": "nemotron-3-super:latest",
+  "packages": [
+    "npm:pi-web-access"
+  ]
+}
 ```
 
 ### Skills
+
+* [agentskills](https://agentskills.io/client-implementation/adding-skills-support) spec, included in prompt
+
+```
+<available_skills>
+  <skill>
+    <name>pdf-processing</name>
+    <description>Extract PDF text, fill forms, merge files. Use when handling PDFs.</description>
+    <location>/home/user/.agents/skills/pdf-processing/SKILL.md</location>
+  </skill>
+  <skill>
+    <name>data-analysis</name>
+    <description>Analyze datasets, generate charts, and create summary reports.</description>
+    <location>/home/user/project/.agents/skills/data-analysis/SKILL.md</location>
+  </skill>
+</available_skills>
+```
+
+Example skill:
+
+```
+$ unzip -l simonlee2-ffmpeg-toolkit.zip
+Archive:  simonlee2-ffmpeg-toolkit.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     8690  2026-04-15 16:22   ffmpeg-toolkit/SKILL.md
+     8679  2026-04-15 16:22   ffmpeg-toolkit/references/ffmpeg-commands.md
+---------                     -------
+    17369                     2 files
+
+
+```
+
+
 
 ## Other agent
