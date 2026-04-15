@@ -42,15 +42,26 @@ to respond to queries. One perspective on that is that every company that wants
 to remain visible, may want to expose what the do or provide through an API. A
 website is for humans, but a machine would require something else.
 
-
 ## Zoo of Agents (cli)
+
+Endless list
+[e2b-dev/awesome-ai-agents](https://github.com/e2b-dev/awesome-ai-agents) with
+20k stars, not updated in a year? Some repos have 10k+ stars, but seem
+abandonned now. Cambrian explosion, lots of life, some of it short-lived;
+[awesome-code-ai](https://github.com/sourcegraph/awesome-code-ai) "was archived
+by the owner on Feb 23, 2026" - shorter, maybe incomplete list;
+[more](https://github.com/ikaijua/Awesome-AITools?tab=readme-ov-file#ai-agent)
+and more and more, ...
+
+Some more, that I had a chance to run:
 
 * [crush](https://github.com/charmbracelet/crush)
 * [goose](https://goose-docs.ai/)
 * [claude code](https://en.wikipedia.org/wiki/Claude_(language_model)#Claude_Code), [2025-02-24](https://www.anthropic.com/news/claude-3-7-sonnet), [best practices](https://code.claude.com/docs/en/best-practices), ...
 * [pi](https://pi.dev)
 
-So, when everybody does mostly the same, but slightly different, what could be a better design?
+**So, when everybody does mostly the same, but slightly different, what could be
+a better design?**
 
 Maybe to keep the default experience minimal, but the program extensible?
 
@@ -96,6 +107,7 @@ $ git summary | head -20
 
 * ai/llm layer (abstractions over various providers)
 * agent (generic agent interaction)
+* tui
 * coding-agent
 * ...
 
@@ -120,3 +132,78 @@ On start, no plugins:
 $ pi list
 No packages installed.
 ```
+
+## The familiar loop
+
+Lifecycle overview:
+
+```
+pi starts
+  │
+  ├─► session_start { reason: "startup" }
+  └─► resources_discover { reason: "startup" }
+      │
+      ▼
+user sends prompt ─────────────────────────────────────────┐
+  │                                                        │
+  ├─► (extension commands checked first, bypass if found)  │
+  ├─► input (can intercept, transform, or handle)          │
+  ├─► (skill/template expansion if not handled)            │
+  ├─► before_agent_start (can inject message, modify system prompt)
+  ├─► agent_start                                          │
+  ├─► message_start / message_update / message_end         │
+  │                                                        │
+  │   ┌─── turn (repeats while LLM calls tools) ───┐       │
+  │   │                                            │       │
+  │   ├─► turn_start                               │       │
+  │   ├─► context (can modify messages)            │       │
+  │   ├─► before_provider_request (can inspect or replace payload)
+  │   │                                            │       │
+  │   │   LLM responds, may call tools:            │       │
+  │   │     ├─► tool_execution_start               │       │
+  │   │     ├─► tool_call (can block)              │       │
+  │   │     ├─► tool_execution_update              │       │
+  │   │     ├─► tool_result (can modify)           │       │
+  │   │     └─► tool_execution_end                 │       │
+  │   │                                            │       │
+  │   └─► turn_end                                 │       │
+  │                                                        │
+  └─► agent_end                                            │
+                                                           │
+user sends another prompt ◄────────────────────────────────┘
+
+/new (new session) or /resume (switch session)
+  ├─► session_before_switch (can cancel)
+  ├─► session_shutdown
+  ├─► session_start { reason: "new" | "resume", previousSessionFile? }
+  └─► resources_discover { reason: "startup" }
+
+/fork
+  ├─► session_before_fork (can cancel)
+  ├─► session_shutdown
+  ├─► session_start { reason: "fork", previousSessionFile }
+  └─► resources_discover { reason: "startup" }
+
+/compact or auto-compaction
+  ├─► session_before_compact (can cancel or customize)
+  └─► session_compact
+
+/tree navigation
+  ├─► session_before_tree (can cancel or customize)
+  └─► session_tree
+
+/model or Ctrl+P (model selection/cycling)
+  └─► model_select
+
+exit (Ctrl+C, Ctrl+D, SIGHUP, SIGTERM)
+  └─► session_shutdown
+```
+
+Plugins can hook into the various stages.
+
+
+## Other notable feautes
+
+* switch model in session
+*
+
